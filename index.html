@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#06100b">
 
 <title>1Win Mines Signals</title>
 
@@ -15,629 +16,105 @@
 }
 
 body{
-  background:#050b08;
+  background:
+    radial-gradient(circle at 50% -10%,#123b26 0,#07130c 35%,#030806 75%);
   color:#fff;
   min-height:100vh;
 }
 
 .header{
-  background:#08120d;
-  border-bottom:1px solid #183526;
-  padding:18px 16px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(5,13,9,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #193526;
 }
 
-.header-content{
-  max-width:500px;
+.header-inner{
+  max-width:520px;
   margin:auto;
+  padding:16px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
+  color:#22ed7a;
   font-size:21px;
   font-weight:900;
-  color:#20e879;
+  letter-spacing:.5px;
 }
 
-.online{
-  font-size:11px;
-  color:#9aaa9f;
+.live{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:7px;
+  color:#9aada1;
+  font-size:10px;
+  font-weight:bold;
 }
 
-.online-dot{
+.live-dot{
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#20e879;
-  box-shadow:0 0 10px #20e879;
+  background:#22ed7a;
+  box-shadow:0 0 12px #22ed7a;
 }
 
 .container{
   width:92%;
-  max-width:500px;
+  max-width:520px;
   margin:auto;
-  padding:28px 0 40px;
+  padding:28px 0 45px;
 }
 
 .hero{
   text-align:center;
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
 
-.mine-icon{
-  font-size:55px;
-  margin-bottom:8px;
-}
-
-.hero h1{
-  font-size:30px;
-  margin-bottom:8px;
-}
-
-.hero p{
-  color:#8fa196;
-  font-size:14px;
-  line-height:1.5;
-}
-
-.card{
-  background:#0b1711;
-  border:1px solid #1a3526;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:18px;
-}
-
-.label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  color:#b8c7be;
-  margin-bottom:9px;
-}
-
-select{
-  width:100%;
-  padding:14px;
-  border-radius:11px;
-  border:1px solid #294736;
-  background:#06100b;
-  color:#fff;
-  font-size:15px;
-  outline:none;
-}
-
-button{
-  width:100%;
-  margin-top:16px;
-  padding:15px;
-  border:0;
-  border-radius:11px;
-  background:#20e879;
-  color:#031008;
-  font-size:16px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-button:active{
-  transform:scale(.98);
-}
-
-.board-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
-}
-
-.board-title h2{
-  font-size:18px;
-}
-
-.signal-status{
-  color:#20e879;
-  font-size:11px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-}
-
-.cell{
-  aspect-ratio:1;
-  border-radius:9px;
-  background:#101e16;
-  border:1px solid #254131;
+.hero-icon{
+  width:78px;
+  height:78px;
+  margin:0 auto 14px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:20px;
-  color:#50645a;
-  position:relative;
-  transition:.3s;
+  border-radius:22px;
+  background:linear-gradient(145deg,#123b25,#09160e);
+  border:1px solid #245438;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  font-size:40px;
 }
 
-.cell small{
-  position:absolute;
-  bottom:4px;
-  right:5px;
-  font-size:7px;
-  color:#50645a;
+.hero h1{
+  font-size:31px;
+  font-weight:900;
+  margin-bottom:8px;
 }
 
-.cell.safe{
-  background:rgba(32,232,121,.12);
-  border-color:#20e879;
-  color:#20e879;
-  box-shadow:0 0 15px rgba(32,232,121,.12);
+.hero h1 span{
+  color:#22ed7a;
 }
 
-.cell.safe small{
-  color:#20e879;
+.hero p{
+  color:#91a399;
+  font-size:13px;
+  line-height:1.6;
 }
 
-.result{
-  text-align:center;
-  margin-top:16px;
-  background:#07110c;
-  border:1px solid #173323;
-  border-radius:11px;
-  padding:13px;
+.card{
+  background:rgba(10,23,15,.92);
+  border:1px solid #1a3827;
+  border-radius:20px;
+  padding:19px;
+  margin-bottom:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,.22);
 }
 
-.result strong{
-  display:block;
-  font-size:25px;
-  color:#20e879;
-}
-
-.result span{
-  font-size:11px;
-  color:#718379;
-}
-
-.history-title{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:10px;
-}
-
-.history-title h2{
-  font-size:18px;
-}
-
-.history-title span{
-  font-size:11px;
-  color:#20e879;
-}
-
-.history-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 0;
-  border-bottom:1px solid #183023;
-}
-
-.history-item:last-child{
-  border-bottom:none;
-}
-
-.history-info{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.mini-grid{
-  display:grid;
-  grid-template-columns:repeat(5,5px);
-  gap:2px;
-}
-
-.mini-cell{
-  width:5px;
-  height:5px;
-  border-radius:1px;
-  background:#29382f;
-}
-
-.mini-cell.active{
-  background:#20e879;
-}
-
-.history-text{
-  font-size:12px;
-  color:#c1ccc5;
-}
-
-.history-time{
-  font-size:10px;
-  color:#64766c;
-}
-
-.notice{
-  background:#15150d;
-  border:1px solid #46451c;
-  color:#bdbb92;
-  border-radius:12px;
-  padding:13px;
-  font-size:11px;
-  line-height:1.5;
-  margin-top:18px;
-}
-
-.footer{
-  text-align:center;
-  color:#53645b;
-  font-size:10px;
-  line-height:1.5;
-  margin-top:25px;
-}
-
-@media(max-width:360px){
-  .hero h1{
-    font-size:26px;
-  }
-
-  .grid{
-    gap:5px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header class="header">
-  <div class="header-content">
-
-    <div class="logo">
-      1WIN MINES
-    </div>
-
-    <div class="online">
-      <span class="online-dot"></span>
-      SIGNALS ONLINE
-    </div>
-
-  </div>
-</header>
-
-<main class="container">
-
-<section class="hero">
-
-  <div class="mine-icon">💣</div>
-
-  <h1>
-    Mines Signals
-  </h1>
-
-  <p>
-    Generate suggested cells for your next Mines round.
-  </p>
-
-</section>
-
-
-<section class="card">
-
-  <label class="label">
-    Number of Mines
-  </label>
-
-  <select id="mines">
-
-    <option value="1">1 Mine</option>
-    <option value="2">2 Mines</option>
-    <option value="3" selected>3 Mines</option>
-    <option value="4">4 Mines</option>
-    <option value="5">5 Mines</option>
-    <option value="6">6 Mines</option>
-    <option value="7">7 Mines</option>
-    <option value="8">8 Mines</option>
-    <option value="9">9 Mines</option>
-    <option value="10">10 Mines</option>
-
-  </select>
-
-  <button onclick="generateSignal()">
-    GENERATE SIGNAL
-  </button>
-
-</section>
-
-
-<section class="card">
-
-  <div class="board-title">
-
-    <h2>
-      Suggested Cells
-    </h2>
-
-    <div class="signal-status" id="status">
-      Waiting...
-    </div>
-
-  </div>
-
-  <div class="grid" id="grid"></div>
-
-  <div class="result">
-
-    <strong id="safeNumber">
-      --
-    </strong>
-
-    <span>
-      suggested cells
-    </span>
-
-  </div>
-
-</section>
-
-
-<section class="card">
-
-  <div class="history-title">
-
-    <h2>
-      Signal History
-    </h2>
-
-    <span>
-      Latest
-    </span>
-
-  </div>
-
-  <div id="history">
-
-    <div style="text-align:center;color:#65766c;font-size:12px;padding:15px 0;">
-      No signals generated yet.
-    </div>
-
-  </div>
-
-</section>
-
-
-<div class="notice">
-
-  ⚠️ <strong>Important:</strong>
-  These are randomly generated suggestions for entertainment and
-  analysis. They cannot know or guarantee where mines are located.
-  Gambling involves risk. Please play responsibly.
-
-</div>
-
-
-<div class="footer">
-
-  © 2026 1Win Mines Signals<br>
-  Entertainment & Analysis Tool
-
-</div>
-
-</main>
-
-
-<script>
-
-const grid = document.getElementById("grid");
-const statusText = document.getElementById("status");
-const safeNumber = document.getElementById("safeNumber");
-const historyBox = document.getElementById("history");
-
-let signalHistory = [];
-
-
-/* CREATE 25 CELLS */
-
-function createGrid(){
-
-  grid.innerHTML="";
-
-  for(let i=0;i<25;i++){
-
-    const cell=document.createElement("div");
-
-    cell.className="cell";
-
-    cell.innerHTML=`
-      <span>•</span>
-      <small>${i+1}</small>
-    `;
-
-    grid.appendChild(cell);
-  }
-}
-
-
-/* GENERATE SIGNAL */
-
-function generateSignal(){
-
-  const mines =
-    parseInt(document.getElementById("mines").value);
-
-  const numberOfSignals =
-    Math.max(3,Math.min(10,25-mines));
-
-  const selected=[];
-
-
-  while(selected.length<numberOfSignals){
-
-    const random =
-      Math.floor(Math.random()*25);
-
-    if(!selected.includes(random)){
-      selected.push(random);
-    }
-
-  }
-
-
-  createGrid();
-
-  const cells =
-    document.querySelectorAll(".cell");
-
-
-  statusText.textContent="Generating...";
-
-
-  selected.forEach((index,position)=>{
-
-    setTimeout(()=>{
-
-      cells[index].classList.add("safe");
-
-      cells[index].innerHTML=`
-        <span>✓</span>
-        <small>${index+1}</small>
-      `;
-
-    },position*80);
-
-  });
-
-
-  setTimeout(()=>{
-
-    statusText.textContent =
-      numberOfSignals+" suggested";
-
-    safeNumber.textContent =
-      numberOfSignals;
-
-  },numberOfSignals*80);
-
-
-  addHistory(selected,mines);
-
-}
-
-
-/* HISTORY */
-
-function addHistory(selected,mines){
-
-  const time =
-    new Date().toLocaleTimeString([],{
-      hour:"2-digit",
-      minute:"2-digit"
-    });
-
-
-  signalHistory.unshift({
-
-    selected:selected,
-    mines:mines,
-    time:time
-
-  });
-
-
-  signalHistory =
-    signalHistory.slice(0,5);
-
-
-  renderHistory();
-
-}
-
-
-function renderHistory(){
-
-  historyBox.innerHTML="";
-
-
-  signalHistory.forEach(item=>{
-
-    const row =
-      document.createElement("div");
-
-    row.className="history-item";
-
-
-    const mini =
-      document.createElement("div");
-
-    mini.className="mini-grid";
-
-
-    for(let i=0;i<25;i++){
-
-      const small =
-        document.createElement("span");
-
-      small.className="mini-cell";
-
-
-      if(item.selected.includes(i)){
-        small.classList.add("active");
-      }
-
-
-      mini.appendChild(small);
-
-    }
-
-
-    row.innerHTML=`
-
-      <div class="history-info">
-
-        <div class="mini-grid-container"></div>
-
-        <div>
-          <div class="history-text">
-            ${item.mines} mines
-          </div>
-
-          <div class="history-time">
-            ${item.selected.length} suggested cells
-          </div>
-        </div>
-
-      </div>
-
-      <div class="history-time">
-        ${item.time}
-      </div>
-
-    `;
-
-
-    row
-      .querySelector(".mini-grid-container")
-      .replaceWith(mini);
-
-
-    historyBox.appendChild(row);
-
-  });
-
-}
-
-
-/* START */
-
-createGrid();
-
-</script>
-
-</body>
-</html>
+.card-title{
+  font-size:17px;
+  font-weight:
