@@ -1,26 +1,997 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1WIN Mines</title>
+<meta name="theme-color" content="#03184f">
+
+<title>1WIN Mines Signals</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  color:#fff;
+  background:
+    radial-gradient(circle at 50% -10%,#1452d8 0%,#071d68 32%,#020b2c 72%,#010615 100%);
+}
+
+.header{
+  background:rgba(2,10,35,.94);
+  border-bottom:1px solid #126fff;
+}
+
+.header-inner{
+  width:92%;
+  max-width:560px;
+  margin:auto;
+  padding:17px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#0798ff;
+}
+
+.live{
+  color:#b8cbed;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.live-dot{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#20e878;
+  box-shadow:0 0 12px #20e878;
+  margin-right:6px;
+}
+
+.container{
+  width:92%;
+  max-width:560px;
+  margin:auto;
+  padding:30px 0 45px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.hero-icon{
+  width:78px;
+  height:78px;
+  margin:0 auto 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  background:linear-gradient(145deg,#087fff,#06358e);
+  border:1px solid #09aaff;
+  box-shadow:0 0 28px rgba(0,130,255,.45);
+  font-size:38px;
+}
+
+.hero h1{
+  font-size:34px;
+  margin-bottom:5px;
+}
+
+.hero h1 span{
+  color:#0798ff;
+}
+
+.hero h2{
+  font-size:27px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#b4c8eb;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.card{
+  background:rgba(3,23,70,.86);
+  border:1px solid #0875e8;
+  border-radius:20px;
+  padding:19px;
+  margin-bottom:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+.title{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:16px;
+}
+
+.label{
+  display:block;
+  color:#b8c9e7;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+select{
+  width:100%;
+  padding:14px;
+  border-radius:11px;
+  border:1px solid #087fff;
+  background:#03184a;
+  color:#fff;
+  font-size:15px;
+}
+
+button{
+  cursor:pointer;
+}
+
+.generate{
+  width:100%;
+  margin-top:14px;
+  padding:15px;
+  border:0;
+  border-radius:11px;
+  background:linear-gradient(135deg,#09a5ff,#0867ff);
+  color:white;
+  font-size:15px;
+  font-weight:900;
+  box-shadow:0 7px 22px rgba(0,120,255,.35);
+}
+
+.generate:active{
+  transform:scale(.98);
+}
+
+.generate:disabled{
+  opacity:.65;
+}
+
+.board-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.board-head h2{
+  font-size:18px;
+}
+
+.status{
+  color:#08a4ff;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.cell{
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#0c3477,#062354);
+  border:1px solid #17529a;
+  border-radius:10px;
+  color:#abc1e5;
+  font-size:18px;
+  font-weight:bold;
+  transition:.25s;
+}
+
+.cell.selected{
+  background:linear-gradient(145deg,#078fff,#075cff);
+  border-color:#15c4ff;
+  color:#fff;
+  box-shadow:0 0 18px rgba(0,145,255,.65);
+  animation:pop .3s ease;
+}
+
+@keyframes pop{
+  from{
+    transform:scale(.7);
+    opacity:.3;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.result{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  margin-top:15px;
+  padding:14px;
+  background:#03184a;
+  border:1px solid #0867d4;
+  border-radius:13px;
+}
+
+.result-box{
+  text-align:center;
+}
+
+.result-box:first-child{
+  border-right:1px solid #1b5791;
+}
+
+.number{
+  display:block;
+  color:#09a5ff;
+  font-size:23px;
+  font-weight:900;
+}
+
+.small{
+  display:block;
+  margin-top:4px;
+  color:#9db6dd;
+  font-size:9px;
+}
+
+.bar-title{
+  display:flex;
+  justify-content:space-between;
+  margin:13px 0 6px;
+  color:#8da8d0;
+  font-size:10px;
+}
+
+.bar{
+  height:7px;
+  background:#0a2149;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#086dff,#09b7ff);
+  transition:width .6s;
+}
+
+.countdown{
+  text-align:center;
+  color:#718bb7;
+  font-size:10px;
+  margin-top:12px;
+}
+
+.countdown strong{
+  color:#08a4ff;
+}
+
+.copy{
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border:1px solid #0876dc;
+  border-radius:10px;
+  background:#06265e;
+  color:#08a5ff;
+  font-weight:bold;
+}
+
+.history-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+.history-head h2{
+  font-size:18px;
+}
+
+.clear{
+  border:0;
+  background:none;
+  color:#7895bf;
+  font-size:10px;
+}
+
+.history-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid #15335d;
+}
+
+.history-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.mini{
+  display:grid;
+  grid-template-columns:repeat(5,5px);
+  gap:2px;
+}
+
+.mini span{
+  width:5px;
+  height:5px;
+  background:#19365e;
+}
+
+.mini span.on{
+  background:#079cff;
+}
+
+.history-main{
+  font-size:11px;
+  color:#c4d4ec;
+}
+
+.history-sub{
+  font-size:9px;
+  color:#6d88b5;
+  margin-top:3px;
+}
+
+.time{
+  font-size:9px;
+  color:#6d88b5;
+}
+
+.empty{
+  text-align:center;
+  color:#6d86af;
+  font-size:11px;
+  padding:15px;
+}
+
+.notice{
+  border:1px solid #244c7e;
+  background:rgba(12,28,62,.75);
+  border-radius:13px;
+  padding:13px;
+  color:#a9bad7;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.footer{
+  text-align:center;
+  color:#526b96;
+  font-size:9px;
+  margin-top:20px;
+}
+
+@media(max-width:360px){
+  .hero h1{
+    font-size:29px;
+  }
+
+  .grid{
+    gap:5px;
+  }
+
+  .cell{
+    border-radius:8px;
+  }
+}
+</style>
 </head>
 
-<body style="margin:0;background:#061a5c;color:white;font-family:Arial;text-align:center;padding-top:80px">
+<body>
 
-<h1 style="color:#08a5ff;font-size:36px;">
-1WIN MINES
-</h1>
+<header class="header">
+  <div class="header-inner">
 
-<h2>Signals</h2>
+    <div class="logo">
+      1WIN <span>MINES</span>
+    </div>
 
-<p style="color:#b9c9e7;">
-Website is working.
-</p>
+    <div class="live">
+      <span class="live-dot"></span>
+      SIGNALS ONLINE
+    </div>
 
-<button style="background:#078cff;color:white;border:0;border-radius:10px;padding:16px 30px;font-size:16px;">
-GENERATE SIGNAL
-</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+
+    <div class="hero-icon">💣</div>
+
+    <h1>
+      1WIN <span>Mines</span>
+    </h1>
+
+    <h2>Signals</h2>
+
+    <p>
+      Get suggested cells for your next Mines round.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <div class="title">
+      ⚙️ &nbsp; Signal Settings
+    </div>
+
+    <label class="label">
+      NUMBER OF MINES
+    </label>
+
+    <select id="mineSelect">
+      <option value="1">1 Mine</option>
+      <option value="2">2 Mines</option>
+      <option value="3" selected>3 Mines</option>
+      <option value="4">4 Mines</option>
+      <option value="5">5 Mines</option>
+      <option value="6">6 Mines</option>
+      <option value="7">7 Mines</option>
+      <option value="8">8 Mines</option>
+      <option value="9">9 Mines</option>
+      <option value="10">10 Mines</option>
+    </select>
+
+    <button
+      class="generate"
+      id="generate"
+      onclick="generateSignal()"
+    >
+      ⚡ GENERATE SIGNAL
+    </button>
+
+  </section>
+
+
+  <section class="card">
+
+    <div class="board-head">
+
+      <h2>▦ &nbsp; Suggested Cells</h2>
+
+      <span
+        class="status"
+        id="status"
+      >
+        READY
+      </span>
+
+    </div>
+
+    <div
+      class="grid"
+      id="grid"
+    ></div>
+
+
+    <div class="result">
+
+      <div class="result-box">
+
+        <span
+          class="number"
+          id="selectedCount"
+        >
+          --
+        </span>
+
+        <span class="small">
+          SUGGESTED CELLS
+        </span>
+
+      </div>
+
+      <div class="result-box">
+
+        <span
+          class="number"
+          id="mineCount"
+        >
+          --
+        </span>
+
+        <span class="small">
+          MINES SELECTED
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="bar-title">
+      <span>SIGNAL INDICATOR</span>
+      <span id="strength">Waiting</span>
+    </div>
+
+    <div class="bar">
+      <div
+        class="fill"
+        id="fill"
+      ></div>
+    </div>
+
+    <div
+      class="countdown"
+      id="countdown"
+    >
+      Generate a signal to begin
+    </div>
+
+    <button
+      class="copy"
+      onclick="copySignal()"
+    >
+      📋 COPY SIGNAL
+    </button>
+
+  </section>
+
+
+  <section class="card">
+
+    <div class="history-head">
+
+      <h2>Signal History</h2>
+
+      <button
+        class="clear"
+        onclick="clearHistory()"
+      >
+        CLEAR
+      </button>
+
+    </div>
+
+    <div id="history">
+
+      <div class="empty">
+        No signals generated yet.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="notice">
+    ⚠️ <b>Important:</b>
+    Signals shown here are randomly generated suggestions
+    for entertainment and analysis. They cannot determine
+    or guarantee the location of mines or future game results.
+    Gambling involves risk. Please play responsibly.
+  </div>
+
+
+  <div class="footer">
+    © 2026 1Win Mines Signals<br>
+    Entertainment &amp; Analysis Tool
+  </div>
+
+</main>
+
+
+<script>
+
+let lastSignal = [];
+let historyData = [];
+let timer = null;
+
+
+/* CREATE BOARD */
+
+function createGrid(){
+
+  const grid =
+    document.getElementById("grid");
+
+  grid.innerHTML = "";
+
+  for(let i = 0; i < 25; i++){
+
+    const cell =
+      document.createElement("div");
+
+    cell.className = "cell";
+
+    cell.textContent = i + 1;
+
+    cell.dataset.index = i;
+
+    grid.appendChild(cell);
+
+  }
+}
+
+
+/* GENERATE SIGNAL */
+
+function generateSignal(){
+
+  const button =
+    document.getElementById("generate");
+
+  const status =
+    document.getElementById("status");
+
+  const mines =
+    parseInt(
+      document.getElementById("mineSelect").value
+    );
+
+  button.disabled = true;
+  button.textContent = "GENERATING...";
+  status.textContent = "ANALYZING";
+
+  createGrid();
+
+  const cells =
+    document.querySelectorAll(".cell");
+
+  let selected = [];
+
+  /*
+    Random suggestions only.
+    This does not predict actual game results.
+  */
+
+  const amount = 5;
+
+  while(selected.length < amount){
+
+    const random =
+      Math.floor(Math.random() * 25);
+
+    if(!selected.includes(random)){
+      selected.push(random);
+    }
+
+  }
+
+  lastSignal = selected;
+
+
+  selected.forEach(
+    (index, position) => {
+
+      setTimeout(
+        function(){
+
+          cells[index].classList.add(
+            "selected"
+          );
+
+          cells[index].textContent = "✓";
+
+        },
+        position * 100
+      );
+
+    }
+  );
+
+
+  setTimeout(
+    function(){
+
+      const strength =
+        Math.floor(
+          70 + Math.random() * 26
+        );
+
+      document.getElementById(
+        "selectedCount"
+      ).textContent = amount;
+
+      document.getElementById(
+        "mineCount"
+      ).textContent = mines;
+
+      document.getElementById(
+        "strength"
+      ).textContent = strength + "%";
+
+      document.getElementById(
+        "fill"
+      ).style.width = strength + "%";
+
+      status.textContent =
+        "SIGNAL READY";
+
+      button.disabled = false;
+
+      button.textContent =
+        "⚡ GENERATE SIGNAL";
+
+      addHistory(
+        selected,
+        mines
+      );
+
+      startTimer();
+
+    },
+    700
+  );
+
+}
+
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timer);
+
+  let seconds = 30;
+
+  const box =
+    document.getElementById("countdown");
+
+  function update(){
+
+    box.innerHTML =
+      "Next signal refresh in <strong>" +
+      seconds +
+      "s</strong>";
+
+  }
+
+  update();
+
+  timer =
+    setInterval(
+      function(){
+
+        seconds--;
+
+        if(seconds <= 0){
+
+          clearInterval(timer);
+
+          box.textContent =
+            "Ready for a new signal";
+
+          return;
+
+        }
+
+        update();
+
+      },
+      1000
+    );
+
+}
+
+
+/* HISTORY */
+
+function addHistory(
+  selected,
+  mines
+){
+
+  const time =
+    new Date().toLocaleTimeString(
+      [],
+      {
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+  historyData.unshift({
+    selected:selected,
+    mines:mines,
+    time:time
+  });
+
+  historyData =
+    historyData.slice(0,5);
+
+  renderHistory();
+
+}
+
+
+function renderHistory(){
+
+  const box =
+    document.getElementById("history");
+
+  if(historyData.length === 0){
+
+    box.innerHTML =
+      '<div class="empty">' +
+      'No signals generated yet.' +
+      '</div>';
+
+    return;
+
+  }
+
+  box.innerHTML = "";
+
+  historyData.forEach(
+    function(item){
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "history-item";
+
+
+      const left =
+        document.createElement("div");
+
+      left.className =
+        "history-left";
+
+
+      const mini =
+        document.createElement("div");
+
+      mini.className =
+        "mini";
+
+
+      for(let i = 0; i < 25; i++){
+
+        const dot =
+          document.createElement("span");
+
+        if(
+          item.selected.includes(i)
+        ){
+
+          dot.className = "on";
+
+        }
+
+        mini.appendChild(dot);
+
+      }
+
+
+      const text =
+        document.createElement("div");
+
+      text.innerHTML =
+        '<div class="history-main">' +
+        item.mines +
+        ' mines</div>' +
+
+        '<div class="history-sub">' +
+        item.selected.length +
+        ' suggested cells</div>';
+
+
+      left.appendChild(mini);
+      left.appendChild(text);
+
+
+      const time =
+        document.createElement("div");
+
+      time.className = "time";
+
+      time.textContent =
+        item.time;
+
+
+      row.appendChild(left);
+      row.appendChild(time);
+
+      box.appendChild(row);
+
+    }
+  );
+
+}
+
+
+/* CLEAR HISTORY */
+
+function clearHistory(){
+
+  historyData = [];
+
+  renderHistory();
+
+}
+
+
+/* COPY SIGNAL */
+
+function copySignal(){
+
+  if(lastSignal.length === 0){
+
+    alert(
+      "Generate a signal first."
+    );
+
+    return;
+
+  }
+
+  const positions =
+    lastSignal
+      .map(
+        function(index){
+          return index + 1;
+        }
+      )
+      .join(", ");
+
+  const text =
+    "1WIN Mines Signal\n" +
+    "Suggested cells: " +
+    positions;
+
+  if(
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ){
+
+    navigator.clipboard
+      .writeText(text)
+      .then(
+        function(){
+          alert("Signal copied!");
+        }
+      )
+      .catch(
+        function(){
+          alert(text);
+        }
+      );
+
+  }else{
+
+    alert(text);
+
+  }
+
+}
+
+
+/* START */
+
+createGrid();
+
+</script>
 
 </body>
-</html>
+  </html>
